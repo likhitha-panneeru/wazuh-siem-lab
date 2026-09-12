@@ -1,0 +1,63 @@
+<!-- Custom Detection Rules - Wazuh SIEM Portfolio Project -->
+<!-- Author: zuzu -->
+
+<!-- Rule 1: Multiple failed Windows logons (Brute Force) -->
+<group name="local,windows,authentication,">
+  <rule id="100002" level="10" frequency="5" timeframe="120">
+    <if_matched_sid>60122</if_matched_sid>
+    <description>Multiple Windows logon failures detected - possible brute force attack.</description>
+    <mitre>
+      <id>T1110</id>
+    </mitre>
+    <group>authentication_failed,brute_force,</group>
+  </rule>
+</group>
+
+<!-- Rule 2: Suspicious PowerShell Execution -->
+<group name="local,windows,powershell,">
+  <rule id="100003" level="12">
+    <if_sid>92000</if_sid>
+    <field name="win.eventdata.scriptBlockText" type="pcre2">(?i)(Invoke-WebRequest|IEX|Invoke-Expression|DownloadString|Net\.WebClient|Start-Process|EncodedCommand|bypass)</field>
+    <description>Suspicious PowerShell command detected - possible malicious execution.</description>
+    <mitre>
+      <id>T1059.001</id>
+    </mitre>
+    <group>attack,execution,</group>
+  </rule>
+</group>
+
+<!-- Rule 3: New User Added to the System -->
+<group name="local,windows,account_management,">
+  <rule id="100004" level="10">
+    <if_sid>60137</if_sid>
+    <description>New user account created on the system - verify if authorized.</description>
+    <mitre>
+      <id>T1136.001</id>
+    </mitre>
+    <group>account_created,persistence,</group>
+  </rule>
+</group>
+
+<!-- Rule 4: Repeated SSH Failed Logins -->
+<group name="local,syslog,sshd,">
+  <rule id="100005" level="10" frequency="5" timeframe="120">
+    <if_matched_sid>5716</if_matched_sid>
+    <description>Multiple SSH authentication failures detected - possible brute force.</description>
+    <mitre>
+      <id>T1110</id>
+    </mitre>
+    <group>authentication_failed,brute_force,</group>
+  </rule>
+</group>
+
+<!-- Rule 5: Web 404 Burst - Possible Web Scanner -->
+<group name="local,web,accesslog,">
+  <rule id="100006" level="8" frequency="10" timeframe="60">
+    <if_matched_sid>31101</if_matched_sid>
+    <description>Multiple web 404 errors from same source - possible web scanning activity.</description>
+    <mitre>
+      <id>T1595</id>
+    </mitre>
+    <group>web_scan,reconnaissance,</group>
+  </rule>
+</group>
