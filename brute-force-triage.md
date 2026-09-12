@@ -54,6 +54,3 @@ Key observations:
 | Credential Access | Brute Force | T1110 |
 | Credential Access | Brute Force: Password Guessing | T1110.001 |
 
----
-
-*Investigated by: zuzu | Date: Sep 11, 2026 | Wazuh SIEM Lab Project*
