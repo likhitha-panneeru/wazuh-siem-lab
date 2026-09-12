@@ -60,11 +60,11 @@ All rules are in `/var/ossec/etc/rules/local_rules.xml`
 
 | Rule ID | Status | Evidence |
 |---------|--------|----------|
-| 100002 | ✅ Fired | Triggered by simulated brute force via `net use` with wrong credentials |
-| 100003 | ⏳ Written | Rule deployed, awaiting PowerShell script block logging configuration |
-| 100004 | ✅ Fired | Triggered when test user accounts were created |
-| 100005 | ⏳ Written | Rule deployed, SSH decoder needed tuning for log format |
-| 100006 | ✅ Fired | Triggered by rapid 404 requests simulating web scanning |
+| 100002 |  Fired | Triggered by simulated brute force via `net use` with wrong credentials |
+| 100003 |  Written | Rule deployed, awaiting PowerShell script block logging configuration |
+| 100004 |  Fired | Triggered when test user accounts were created |
+| 100005 |  Written | Rule deployed, SSH decoder needed tuning for log format |
+| 100006 |  Fired | Triggered by rapid 404 requests simulating web scanning |
 
 ---
 
@@ -131,24 +131,6 @@ RECOMMENDED ACTIONS:
 5. Generate test events and verify detections fire
 6. Investigate alerts and write triage notes
 
-# Project Structure
 
-```
-wazuh-siem-lab/
-├── README.md
-├── rules/
-│   └── local_rules.xml          # 5 custom detection rules
-├── triage-notes/
-│   └── brute-force-triage.md    # Sample investigation note
-├── screenshots/
-│   ├── 01-dashboard-overview.png
-│   ├── 02-agent-active.png
-│   ├── 03-threat-hunting-events.png
-│   ├── 04-custom-rules-firing.png
-│   ├── 05-mitre-attack-mapping.png
-│   └── 06-alert-investigation.png
-└── config/
-    └── ossec-localfiles.xml     # Apache log collection config
-```
 
 
